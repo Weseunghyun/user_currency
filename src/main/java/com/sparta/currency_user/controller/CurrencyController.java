@@ -5,6 +5,7 @@ import com.sparta.currency_user.dto.CurrencyResponseDto;
 import com.sparta.currency_user.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +27,9 @@ public class CurrencyController {
     }
 
     @PostMapping
-    public ResponseEntity<CurrencyResponseDto> createCurrency(@RequestBody CurrencyRequestDto currencyRequestDto) {
+    public ResponseEntity<CurrencyResponseDto> createCurrency(
+        @Validated @RequestBody CurrencyRequestDto currencyRequestDto
+    ) {
         return ResponseEntity.ok().body(currencyService.save(currencyRequestDto));
     }
 }
