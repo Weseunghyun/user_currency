@@ -1,6 +1,5 @@
-package com.sparta.currency_user.error;
+package com.sparta.currency_user.common.error;
 
-import com.sparta.currency_user.error.dto.ErrorResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

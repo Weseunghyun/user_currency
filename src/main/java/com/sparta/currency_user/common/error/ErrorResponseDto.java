@@ -1,4 +1,4 @@
-package com.sparta.currency_user.error.dto;
+package com.sparta.currency_user.common.error;
 
 import lombok.Builder;
 import lombok.Getter;
