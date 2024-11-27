@@ -3,9 +3,12 @@ package com.sparta.currency_user.controller;
 import com.sparta.currency_user.dto.ExchangeRequestDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.service.ExchangeService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,5 +32,14 @@ public class ExchangeController {
             requestDto.getAmountInKrw()
         );
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ExchangeResponseDto>> findExchangeRequests(
+        @PathVariable Long userId
+    ) {
+        List<ExchangeResponseDto> responseDtos = exchangeService.findExchangeRequests(userId);
+
+        return new ResponseEntity<>(responseDtos, HttpStatus.OK);
     }
 }

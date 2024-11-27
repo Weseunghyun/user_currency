@@ -8,6 +8,7 @@ import com.sparta.currency_user.entity.UserCurrencyStatus;
 import com.sparta.currency_user.repository.ExchangeRepository;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,15 @@ public class ExchangeService {
             .currencyId(currencyId)
             .amountInKrw(amount)
             .amountAfterExchange(amountAfterExchange)
+            .userCurrencyStatus(savedUserCurrency.getStatus())
             .createdAt(savedUserCurrency.getCreated())
             .modifiedAt(savedUserCurrency.getModified())
             .build();
     }
 
+    public List<ExchangeResponseDto> findExchangeRequests(Long userId) {
+
+        return exchangeRepository.findAllByUserId(userId)
+            .stream().map(ExchangeResponseDto::toDto).toList();
+    }
 }
