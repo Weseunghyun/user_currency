@@ -1,5 +1,6 @@
 package com.sparta.currency_user.service;
 
+import com.sparta.currency_user.dto.ExchangeGroupResponseDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.entity.Currency;
 import com.sparta.currency_user.entity.User;
@@ -68,5 +69,9 @@ public class ExchangeService {
             .createdAt(savedUserCurrency.getCreated())
             .modifiedAt(savedUserCurrency.getModified())
             .build();
+    }
+
+    public ExchangeGroupResponseDto findGroupExchangeRequest(Long id) {
+        return exchangeRepository.findGroupExchangeRequestByUserId(id, UserCurrencyStatus.NORMAL);
     }
 }

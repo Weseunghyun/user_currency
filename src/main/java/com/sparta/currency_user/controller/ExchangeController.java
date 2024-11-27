@@ -1,5 +1,6 @@
 package com.sparta.currency_user.controller;
 
+import com.sparta.currency_user.dto.ExchangeGroupResponseDto;
 import com.sparta.currency_user.dto.ExchangeRequestDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.service.ExchangeService;
@@ -43,6 +44,13 @@ public class ExchangeController {
         List<ExchangeResponseDto> responseDtos = exchangeService.findExchangeRequests(id);
 
         return new ResponseEntity<>(responseDtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/group/{id}")
+    public ResponseEntity<ExchangeGroupResponseDto> findGroupExchangeRequest(
+        @PathVariable Long id
+    ){
+           return new ResponseEntity<>(exchangeService.findGroupExchangeRequest(id), HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
