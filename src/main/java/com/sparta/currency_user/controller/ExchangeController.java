@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,12 +35,19 @@ public class ExchangeController {
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/{id}")
     public ResponseEntity<List<ExchangeResponseDto>> findExchangeRequests(
-        @PathVariable Long userId
+        @PathVariable Long id
     ) {
-        List<ExchangeResponseDto> responseDtos = exchangeService.findExchangeRequests(userId);
+        List<ExchangeResponseDto> responseDtos = exchangeService.findExchangeRequests(id);
 
         return new ResponseEntity<>(responseDtos, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ExchangeResponseDto> updateExchangeRequest(
+        @PathVariable Long id
+    ){
+        return new ResponseEntity<>(exchangeService.updateExchangeRequest(id), HttpStatus.OK);
     }
 }

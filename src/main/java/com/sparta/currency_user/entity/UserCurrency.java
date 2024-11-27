@@ -45,4 +45,8 @@ public class UserCurrency extends TimeBaseEntity{
     public UserCurrency() {
 
     }
+
+    public void updateUserStatus(UserCurrencyStatus newStatus) {
+        this.status = newStatus;
+    }
 }

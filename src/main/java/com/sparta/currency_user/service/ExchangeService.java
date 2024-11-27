@@ -47,7 +47,26 @@ public class ExchangeService {
 
     public List<ExchangeResponseDto> findExchangeRequests(Long userId) {
 
-        return exchangeRepository.findAllByUserId(userId)
+        return exchangeRepository.findAllByUserIdAndStatus(userId, UserCurrencyStatus.NORMAL)
             .stream().map(ExchangeResponseDto::toDto).toList();
+    }
+
+    public ExchangeResponseDto updateExchangeRequest(Long userCurrencyId) {
+        UserCurrency findUserCurrency = exchangeRepository.findByIdOrElseThrow(userCurrencyId);
+
+        findUserCurrency.updateUserStatus(UserCurrencyStatus.CANCELED);
+
+        UserCurrency savedUserCurrency = exchangeRepository.save(findUserCurrency);
+
+        return ExchangeResponseDto.builder()
+            .id(savedUserCurrency.getId())
+            .userId(savedUserCurrency.getUser().getId())
+            .currencyId(savedUserCurrency.getCurrency().getId())
+            .amountInKrw(savedUserCurrency.getAmountInKrw())
+            .amountAfterExchange(savedUserCurrency.getAmountAfterExchange())
+            .userCurrencyStatus(savedUserCurrency.getStatus())
+            .createdAt(savedUserCurrency.getCreated())
+            .modifiedAt(savedUserCurrency.getModified())
+            .build();
     }
 }
