@@ -3,6 +3,7 @@ package com.sparta.currency_user.service;
 import com.sparta.currency_user.dto.ExchangeGroupResponseDto;
 import com.sparta.currency_user.dto.ExchangeResponseDto;
 import com.sparta.currency_user.entity.Currency;
+import com.sparta.currency_user.entity.CurrencyName;
 import com.sparta.currency_user.entity.User;
 import com.sparta.currency_user.entity.UserCurrency;
 import com.sparta.currency_user.entity.UserCurrencyStatus;
@@ -25,8 +26,10 @@ public class ExchangeService {
         User findUser = userService.findUserById(userId);
         Currency findCurrency = currencyService.findCurrencyById(currencyId);
 
+        int floatingPoint = CurrencyName.getFloatingPointByCurrencyName(findCurrency.getCurrencyName());
         BigDecimal exchangeRate = findCurrency.getExchangeRate();
-        BigDecimal amountAfterExchange = amount.divide(exchangeRate,2, RoundingMode.HALF_UP);
+
+        BigDecimal amountAfterExchange = amount.divide(exchangeRate, floatingPoint, RoundingMode.HALF_UP);
 
         UserCurrency userCurrency = new UserCurrency(
             findUser,findCurrency,amount,amountAfterExchange, UserCurrencyStatus.NORMAL

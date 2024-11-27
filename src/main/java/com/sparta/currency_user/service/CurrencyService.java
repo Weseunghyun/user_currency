@@ -4,7 +4,10 @@ import com.sparta.currency_user.dto.CurrencyRequestDto;
 import com.sparta.currency_user.dto.CurrencyResponseDto;
 import com.sparta.currency_user.entity.Currency;
 import com.sparta.currency_user.repository.CurrencyRepository;
+import jakarta.annotation.PostConstruct;
+import java.math.BigDecimal;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import org.springframework.web.server.ResponseStatusException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CurrencyService {
@@ -36,5 +40,17 @@ public class CurrencyService {
     public CurrencyResponseDto save(CurrencyRequestDto currencyRequestDto) {
         Currency savedCurrency = currencyRepository.save(currencyRequestDto.toEntity());
         return new CurrencyResponseDto(savedCurrency);
+    }
+
+    @PostConstruct
+    public void validateCurrencyRate(){
+        List<Currency> currencies = currencyRepository.findAll();
+
+        currencies.forEach(currency -> {
+            BigDecimal exchangeRate = currency.getExchangeRate();
+            if (exchangeRate.compareTo(BigDecimal.ZERO) <= 0 ) {
+                log.error("Currency exchange rate is less than zero");
+            }
+        });
     }
 }
