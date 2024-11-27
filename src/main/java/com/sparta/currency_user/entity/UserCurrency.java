@@ -1,6 +1,8 @@
 package com.sparta.currency_user.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,13 +27,14 @@ public class UserCurrency extends TimeBaseEntity{
     @JoinColumn(name = "to_currency_id", nullable = false)
     private Currency currency;
 
-    private int amountInKrw;
+    private BigDecimal amountInKrw;
     private BigDecimal amountAfterExchange;
-    private String status = "normal";
 
-    public UserCurrency(User user, Currency currency, int amountInKrw,
-        BigDecimal amountAfterExchange,
-        String status) {
+    @Enumerated(EnumType.STRING)
+    private UserCurrencyStatus status;
+
+    public UserCurrency(User user, Currency currency, BigDecimal amountInKrw,
+        BigDecimal amountAfterExchange, UserCurrencyStatus status) {
         this.user = user;
         this.currency = currency;
         this.amountInKrw = amountInKrw;
