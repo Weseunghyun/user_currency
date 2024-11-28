@@ -33,13 +33,13 @@
   - 응답
         - **Body** :
         
-        ```json
+     ```json
         {
             "id": 1,
             "name": "예시",
             "email": "asd123@naver.com"
         }
-        ```
+     ```
         
 </details>
 
@@ -56,7 +56,7 @@
    - **응답**
         - **Body** :
     
-    ```json
+  ```json
     [
         {
             "id": 1,
@@ -69,7 +69,7 @@
             "email": "efh123@naver.com"
         }
     ]
-    ```
+  ```
     
 </details>
 
@@ -86,13 +86,13 @@
   - 응답
         - **Body** :
         
-        ```json
+    ```json
         {
             "id": 1,
             "name": "예시",
             "email": "asd123@naver.com"
         }
-        ```
+    ```
         
 </details>
 
@@ -109,9 +109,9 @@
   - **응답**
         - **Body** :
         
-        ```json
+    ```json
         정상적으로 삭제되었습니다.
-        ```
+    ```
         
 </details>
 
@@ -131,26 +131,26 @@
             - `content-type : application/json`
         - **Body :**
         
-        ```json
+    ```json
         {
             "currencyName" : "USD",
             "exchangeRate" : 1390.91,
             "symbol" : "$"
         }
-        ```
+    ```
         
     
 - **응답**
         - **Body** :
         
-        ```json
+   ```json
         {
             "id": 1,
             "currencyName": "USD",
             "exchangeRate": 1390.91,
             "symbol": "$"
         }
-        ```
+    ```
         
 </details>
 
@@ -189,7 +189,7 @@
         }
     ]
     ```
-    
+
 </details>
 
 ---
@@ -205,14 +205,14 @@
   - **응답**
         - **Body** :
         
-        ```json
+    ```json
         {
             "id": 1,
             "currencyName": "USD",
             "exchangeRate": 1390.91,
             "symbol": "$"
         }
-        ```
+    ```
 
 </details>
 
@@ -244,7 +244,7 @@
   - 응답
         - **Body** :
         
-        ```json
+    ```json
         {
             "id": 3,
             "userId": 1,
@@ -255,7 +255,7 @@
             "createdAt": "2024-11-28T16:41:21.1249799",
             "modifiedAt": "2024-11-28T16:41:21.1249799"
         }
-        ```
+     ```
         
 </details>
 
@@ -273,7 +273,7 @@
   - **응답**
         - **Body** :
         
-        ```json
+    ```json
         [
             {
                 "id": 2,
@@ -296,7 +296,7 @@
                 "modifiedAt": "2024-11-28T16:41:21.12498"
             }
         ]
-        ```
+    ```
         
 </details>
 
@@ -314,12 +314,12 @@
   - **응답**
         - **Body** :
         
-        ```json
+    ```json
         {
             "count": 2,
             "totalAmountInKrw": 20000.00
         }
-        ```
+    ```
 
 </details>
 
@@ -337,7 +337,7 @@
   - **응답**
         - **Body** :
         
-        ```json
+    ```json
         {
             "id": 1,
             "userId": 1,
@@ -348,7 +348,7 @@
             "createdAt": "2024-11-28T16:41:14.46799",
             "modifiedAt": "2024-11-28T16:41:29.3015931"
         }
-        ```
+     ```
 
 </details>
 
