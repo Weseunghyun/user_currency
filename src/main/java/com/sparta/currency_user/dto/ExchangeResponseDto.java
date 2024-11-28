@@ -38,6 +38,11 @@ public class ExchangeResponseDto {
         this.modifiedAt = modifiedAt;
     }
 
+    /**
+     * 환전 요청 응답 DTO 로 변환하는 메서드
+     * @param userCurrency 객체
+     * @return 환전 요청 응답 DTO 반환
+     */
     public static ExchangeResponseDto toDto(UserCurrency userCurrency) {
         return new ExchangeResponseDto(
             userCurrency.getId(),

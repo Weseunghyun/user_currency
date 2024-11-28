@@ -13,7 +13,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Getter
-public class Currency extends TimeBaseEntity{
+public class Currency extends TimeBaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,6 +23,7 @@ public class Currency extends TimeBaseEntity{
     private BigDecimal exchangeRate;
     private String symbol;
 
+    //UserCurrency 엔티티와 연관관계 설정
     @OneToMany(mappedBy = "currency")
     List<UserCurrency> userCurrencies = new ArrayList<>();
 
@@ -31,5 +33,6 @@ public class Currency extends TimeBaseEntity{
         this.symbol = symbol;
     }
 
-    public Currency() {}
+    public Currency() {
+    }
 }

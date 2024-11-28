@@ -1,5 +1,8 @@
 package com.sparta.currency_user.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum UserCurrencyStatus {
     NORMAL("normal"),
     CANCELED("canceled");
@@ -10,7 +13,4 @@ public enum UserCurrencyStatus {
         this.status = status;
     }
 
-    public String getStatus() {
-        return status;
-    }
 }

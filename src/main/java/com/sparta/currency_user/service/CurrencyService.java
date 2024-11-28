@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -43,12 +42,12 @@ public class CurrencyService {
     }
 
     @PostConstruct
-    public void validateCurrencyRate(){
+    public void validateCurrencyRate() {
         List<Currency> currencies = currencyRepository.findAll();
 
         currencies.forEach(currency -> {
             BigDecimal exchangeRate = currency.getExchangeRate();
-            if (exchangeRate.compareTo(BigDecimal.ZERO) <= 0 ) {
+            if (exchangeRate.compareTo(BigDecimal.ZERO) <= 0) {
                 log.error("Currency exchange rate is less than zero");
             }
         });

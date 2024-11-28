@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class ExchangeGroupResponseDto {
+
     private final long count;
     private final BigDecimal totalAmountInKrw;
 

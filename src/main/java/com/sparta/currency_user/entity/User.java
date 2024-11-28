@@ -7,7 +7,8 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class User extends TimeBaseEntity{
+public class User extends TimeBaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,6 +16,10 @@ public class User extends TimeBaseEntity{
     private String name;
     private String email;
 
+    /*
+    UserCurrency 엔티티와 연관관계 설정, CascadeType.ALL 을 이용해 유저 데이터가 삭제되면 영속성 전이를
+    이용해 해당 유저가 수행한 모든 환전요청도 같이 삭제된다.
+     */
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<UserCurrency> currencies = new ArrayList<>();
 
@@ -23,5 +28,6 @@ public class User extends TimeBaseEntity{
         this.email = email;
     }
 
-    public User() {}
+    public User() {
+    }
 }

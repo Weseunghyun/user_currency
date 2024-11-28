@@ -5,10 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class UserResponseDto {
-    private Long id;
 
-    private String name;
-    private String email;
+    private final Long id;
+    private final String name;
+    private final String email;
 
     public UserResponseDto(User user) {
         this.id = user.getId();
@@ -22,11 +22,15 @@ public class UserResponseDto {
         this.email = email;
     }
 
+    /**
+     * @param user 객체를 응답 DTO 로 변환
+     * @return 응답 DTO 반환
+     */
     public static UserResponseDto toDto(User user) {
         return new UserResponseDto(
-                user.getId(),
-                user.getName(),
-                user.getEmail()
+            user.getId(),
+            user.getName(),
+            user.getEmail()
         );
     }
 }

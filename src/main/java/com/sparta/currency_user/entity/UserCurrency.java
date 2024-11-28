@@ -13,7 +13,7 @@ import lombok.Getter;
 
 @Entity
 @Getter
-public class UserCurrency extends TimeBaseEntity{
+public class UserCurrency extends TimeBaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,7 @@ public class UserCurrency extends TimeBaseEntity{
     private BigDecimal amountInKrw;
     private BigDecimal amountAfterExchange;
 
+    //Enum 타입을 String 으로 저장하도록 설정
     @Enumerated(EnumType.STRING)
     private UserCurrencyStatus status;
 
@@ -46,6 +47,7 @@ public class UserCurrency extends TimeBaseEntity{
 
     }
 
+    //상태를 CANCELED 로 수정할 때 사용되는 메서드
     public void updateUserStatus(UserCurrencyStatus newStatus) {
         this.status = newStatus;
     }
